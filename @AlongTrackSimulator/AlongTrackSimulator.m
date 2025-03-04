@@ -21,8 +21,14 @@ classdef AlongTrackSimulator
             end
             lat = ncread("@AlongTrackSimulator/" + self.path, mission + "/latitude");
             lon = ncread("@AlongTrackSimulator/" + self.path, mission + "/longitude");
-            time = ncread("@AlongTrackSimulator/" + self.path, mission + "/time");
+            time = days(ncread("@AlongTrackSimulator/" + self.path, mission + "/time")) + datetime(1950,01,01);
         end
+
+        function missions = missions(self)
+            info = ncinfo("@AlongTrackSimulator/" + self.path);
+            missions = {info.Groups.Name};
+        end
+        
         function alongtrack = projectedPointsForReferenceOrbit(self,options)
             arguments
                 self AlongTrackSimulator

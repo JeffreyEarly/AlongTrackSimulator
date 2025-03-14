@@ -14,19 +14,19 @@ classdef AlongTrackSimulatorEmpirical < AlongTrackSimulatorBase
             self.path = options.path;
         end
 
-        function [lat,lon,time] = pathForMission(self,mission)
+        function [lat,lon,time] = pathForMissionWithName(self,mission)
             arguments
                 self AlongTrackSimulatorEmpirical
                 mission {mustBeText}
             end
-            lat = ncread("@AlongTrackSimulator/" + self.path, mission + "/latitude");
-            lon = ncread("@AlongTrackSimulator/" + self.path, mission + "/longitude");
-            time = days(ncread("@AlongTrackSimulator/" + self.path, mission + "/time")) + datetime(1950,01,01);
+            lat = ncread("@AlongTrackSimulatorEmpirical/" + self.path, mission + "/latitude");
+            lon = ncread("@AlongTrackSimulatorEmpirical/" + self.path, mission + "/longitude");
+            time = days(ncread("@AlongTrackSimulatorEmpirical/" + self.path, mission + "/time")) + datetime(1950,01,01);
         end
 
         function missions = missions(self)
-            info = ncinfo("@AlongTrackSimulator/" + self.path);
-            missions = {info.Groups.Name};
+            info = ncinfo("@AlongTrackSimulatorEmpirical/" + self.path);
+            missions = reshape(string({info.Groups.Name}),[],1);
         end
         
         % function alongtrack = projectedPointsForReferenceOrbit(self,options)

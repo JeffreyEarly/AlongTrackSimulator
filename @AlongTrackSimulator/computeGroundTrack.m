@@ -1,6 +1,6 @@
-function [lat, lon] = computeGroundTrack(altitude, e, incl, RAAN, argPerigee, M0, t)
+function [lat, lon] = computeGroundTrack(semi_major_axis, e, incl, RAAN, argPerigee, M0, t)
 arguments
-    altitude 
+    semi_major_axis 
     e 
     incl 
     RAAN 
@@ -36,7 +36,7 @@ N = length(t);
 lat = zeros(1, N);
 lon = zeros(1, N);
 
-a = Re + altitude;
+a = semi_major_axis;
 for i = 1:N
     % Compute mean anomaly at time t(i)
     M = M0 + sqrt(mu / a^3) * t(i);

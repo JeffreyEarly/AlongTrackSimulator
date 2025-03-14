@@ -1,4 +1,4 @@
-classdef AlongTrackSimulator < AlongTrackSimulatorBase
+classdef AlongTrackSimulatorEmpirical < AlongTrackSimulatorBase
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
 
